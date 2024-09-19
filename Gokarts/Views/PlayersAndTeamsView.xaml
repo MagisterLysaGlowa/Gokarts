@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Gokarts.Views.PlayersAndTeamsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gokarts.Views"
+        mc:Ignorable="d"
+              xmlns:hc="https://handyorg.github.io/handycontrol">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="MyConverter"/>
+    </UserControl.Resources>
+
+    <!--Teams and players-->
+    <StackPanel Background="#1E3947" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0,10,0,10">
+                <Button Margin="20,16,0,0" Command="{Binding NavigateHomeCommand}" Background="Transparent" BorderBrush="Transparent" >
+                    <Image Source="../assets/icons/return.png" Height="40" Width="40"/>
+                </Button>
+
+                <ComboBox FontSize="20" BorderThickness="0,0,0,0" x:Name="FIFTI" Background="Transparent"  Foreground="White" >
+                    <ComboBoxItem Content="Drużyny"></ComboBoxItem>
+                    <ComboBoxItem Content="Zawodnicy"></ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <hc:ButtonGroup Margin="10,15,20,0">
+                    <Button  Content="Dodaj" FontSize="18" Background="DarkSeaGreen" />
+                    <Button  Content="Edytuj" FontSize="18" Background="CornflowerBlue"  />
+                    <Button  Content="Usuń" FontSize="18" Background="IndianRed" />
+                </hc:ButtonGroup>
+            </StackPanel>
+        </Grid>
+
+
+        <DataGrid x:Name="team_grid" AutoGenerateColumns="False" Margin="20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding LP}"/>
+                <DataGridTextColumn Header="Nazwa drużyny" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Nazwa szkoły" Binding="{Binding Date}" />
+                <DataGridTextColumn Header="Lokacja" Binding="{Binding Location}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="players_grid" AutoGenerateColumns="False" Visibility="Collapsed" Margin="20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding LP}"/>
+                <DataGridTextColumn Header="Imię" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding LastName}" />
+                <DataGridTextColumn Header="Nazwa drużyny" Binding="{Binding TeamName}"/>
+                <DataGridTextColumn Header="Pochodzenie" Binding="{Binding Origin}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</UserControl>
